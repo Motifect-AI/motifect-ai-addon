@@ -1,0 +1,19 @@
+schema_version = "1.0.0"
+
+id = "motifect_ai_motion"
+version = "2.3.0"
+name = "Motifect Motion"
+tagline = "Text-to-motion via motifect.io API"
+maintainer = "Motifect"
+type = "add-on"
+
+blender_version_min = "4.2.0"
+license = ["SPDX:GPL-3.0-or-later"]
+copyright = ["2026 Motifect"]
+
+website = "https://motifect.io/en/addons"
+
+tags = ["Animation", "Import-Export"]
+
+[permissions]
+network = "Connect to motifect.io API for motion generation and credits"

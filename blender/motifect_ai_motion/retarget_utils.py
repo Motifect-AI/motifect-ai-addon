@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Motifect
+
 """Retargeting — bind calibration + local rotation (frontend viewer.js parity)."""
 
 from __future__ import annotations

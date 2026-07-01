@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Motifect
+
 """Motifect REST API client — no third-party dependencies (stdlib only)."""
 
 from __future__ import annotations
@@ -154,6 +157,14 @@ class MotifectClient:
         self.last_diagnostics = diagnostics
         return diagnostics
 
+    def _ensure_online_access(self) -> None:
+        try:
+            from ..network import OnlineAccessDisabledError, ensure_online_access
+
+            ensure_online_access()
+        except OnlineAccessDisabledError as exc:
+            raise MotifectAPIError(str(exc)) from exc
+
     def _request(
         self,
         method: str,
@@ -161,6 +172,7 @@ class MotifectClient:
         body: dict | None = None,
         timeout: float = 60.0,
     ) -> dict:
+        self._ensure_online_access()
         url = f"{self.base_url}{path}"
         data = None
         headers = self._headers(json_body=body is not None)
@@ -241,6 +253,7 @@ class MotifectClient:
 
     def diagnose(self, timeout: float = 30.0) -> dict[str, Any]:
         """Run a lightweight connectivity/auth check and return structured diagnostics."""
+        self._ensure_online_access()
         report: dict[str, Any] = {
             "client_version": CLIENT_VERSION,
             "python_version": sys.version.replace("\n", " "),
@@ -389,6 +402,7 @@ class MotifectClient:
         return None
 
     def download(self, url: str, dest_path: str, timeout: float = 120.0) -> str:
+        self._ensure_online_access()
         headers = {"User-Agent": self.user_agent, "Accept": "*/*"}
         req = urllib.request.Request(url, method="GET", headers=headers)
         try:

@@ -69,17 +69,14 @@ Prompts: English, action-focused, 10–180 characters.
 
 ---
 
-## Development
+## Marketplace prep
 
-Local sources live in the `motifect-ai` monorepo under `addons/` (not committed to the web app repo).
-
-From this directory:
+See [MARKETPLACE.md](MARKETPLACE.md) for Superhive / Unity Asset Store / Epic Fab checklists and listing copy.
 
 ```bash
 python scripts/sync_all.py
+python scripts/build_fab_zip.py
 ```
-
-Syncs `blender/`, `unreal/`, and `unity/` from local dev sources and builds the Blender release zip.
 
 ---
 

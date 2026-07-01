@@ -19,6 +19,8 @@ SOURCES = (
 IGNORE = shutil.ignore_patterns("__pycache__", "*.pyc", "*.pyo", "Library", "Temp", "obj", "bin")
 BLENDER_ZIP = ROOT / "blender" / "motifect_ai_motion.zip"
 BLENDER_PKG = "motifect_ai_motion"
+BLENDER_GPL = ADDONS / "blender" / "motifect_motion" / "LICENSE"
+BLENDER_COPYING = ADDONS / "blender" / "motifect_motion" / "COPYING"
 
 
 def sync_tree(src: Path, dst: Path) -> None:
@@ -47,7 +49,14 @@ def build_blender_zip() -> None:
 def main() -> None:
     for src, dst in SOURCES:
         sync_tree(src, dst)
+    # GPL license lives in dev source; ensure public blender folder has it
+    if BLENDER_GPL.is_file():
+        shutil.copy2(BLENDER_GPL, ROOT / "blender" / "LICENSE")
+    if BLENDER_COPYING.is_file():
+        dst_copying = ROOT / "blender" / "motifect_ai_motion" / "COPYING"
+        shutil.copy2(BLENDER_COPYING, dst_copying)
     build_blender_zip()
+    print("Run scripts/build_fab_zip.py for Unreal Fab archive.")
 
 
 if __name__ == "__main__":

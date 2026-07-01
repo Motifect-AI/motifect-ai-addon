@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Motifect
+
 """Safe register/unregister — clears stale RNA classes from failed installs."""
 
 import bpy

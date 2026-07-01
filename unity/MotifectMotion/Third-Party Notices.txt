@@ -1,0 +1,19 @@
+Third-Party Notices
+===================
+
+Motifect Motion uses the following third-party components:
+
+1. Newtonsoft.Json (via Unity Package Manager)
+   Package: com.unity.nuget.newtonsoft-json
+   License: MIT
+   Copyright (c) James Newton-King and contributors
+   https://github.com/applejag/Newtonsoft.Json-for-Unity
+
+See the Unity Package Manager for the exact version resolved in your project.
+
+Motifect API Service
+====================
+
+This package connects to the Motifect cloud API at api.motifect.io.
+Motion generation requires a motifect.io account, API key, and credits.
+Terms: https://motifect.io/terms

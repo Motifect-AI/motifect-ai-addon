@@ -1,10 +1,11 @@
 {
   "name": "io.motifect.motion",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "Motifect Motion",
-  "description": "Generate human motion from text prompts via the Motifect API and import FBX animations into Unity.",
-  "unity": "2021.3",
-  "documentationUrl": "https://motifect.io/en/docs",
+  "description": "Free editor tool: generate human motion from text via the Motifect API (motifect.io account, API key, and paid credits required). Imports FBX animations into Unity.",
+  "unity": "2022.3",
+  "unityRelease": "0f1",
+  "documentationUrl": "https://motifect.io/en/addons",
   "author": {
     "name": "Motifect",
     "url": "https://motifect.io"

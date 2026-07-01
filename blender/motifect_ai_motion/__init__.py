@@ -1,7 +1,10 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Motifect
+
 bl_info = {
     "name": "Motifect Motion",
     "author": "Motifect",
-    "version": (2, 2, 1),
+    "version": (2, 3, 0),
     "blender": (3, 6, 0),
     "location": "View3D > Sidebar (N) > Motifect",
     "description": "Text-to-motion via motifect.io (account, API key & credits required)",
