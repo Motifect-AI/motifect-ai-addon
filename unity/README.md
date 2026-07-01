@@ -10,7 +10,7 @@ Unity 2021.3+ UPM package.
 https://github.com/Motifect-AI/motifect-ai-addon.git?path=/unity/MotifectMotion
 ```
 
-Or copy [`MotifectMotion`](MotifectMotion) to `YourProject/Packages/MotifectMotion/`.
+Or copy [`MotifectMotion`](MotifectMotion) to `YourProject/Packages/com.motifect.motion/`.
 
 ## Use
 

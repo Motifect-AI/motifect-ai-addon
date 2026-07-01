@@ -66,10 +66,13 @@ Generated motion is downloaded as FBX and imported into the project.
 
 **Deliverable:** `unity/MotifectMotion/` UPM package
 
-**Git URL for testers:**
+**Git URL for testers** (after push, folder rename to `com.motifect.motion` in project):
+
 ```
 https://github.com/Motifect-AI/motifect-ai-addon.git?path=/unity/MotifectMotion
 ```
+
+**Asset Store package ID:** `com.motifect.motion` — see [UNITY_ASSET_STORE.md](UNITY_ASSET_STORE.md) for full upload steps.
 
 **Checklist:**
 - [x] Unity 2022.3+ in manifest

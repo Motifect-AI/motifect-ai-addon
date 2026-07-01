@@ -20,7 +20,7 @@
 https://github.com/Motifect-AI/motifect-ai-addon.git?path=/unity/MotifectMotion
 ```
 
-Or copy this folder to `YourProject/Packages/MotifectMotion/`.
+Or copy this folder to `YourProject/Packages/com.motifect.motion/`.
 
 ## Setup
 

@@ -1,5 +1,5 @@
 {
-  "name": "io.motifect.motion",
+  "name": "com.motifect.motion",
   "version": "1.0.1",
   "displayName": "Motifect Motion",
   "description": "Free editor tool: generate human motion from text via the Motifect API (motifect.io account, API key, and paid credits required). Imports FBX animations into Unity.",
