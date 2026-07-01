@@ -1,0 +1,20 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.0.0",
+  "FriendlyName": "Motifect Motion",
+  "Description": "Generate human motion from text prompts via Motifect API and import FBX into Unreal.",
+  "Category": "Animation",
+  "CreatedBy": "Motifect",
+  "EnabledByDefault": true,
+  "CanContainContent": false,
+  "IsBetaVersion": false,
+  "Installed": false,
+  "Modules": [],
+  "Plugins": [
+    {
+      "Name": "PythonScriptPlugin",
+      "Enabled": true
+    }
+  ]
+}

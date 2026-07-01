@@ -1,0 +1,9 @@
+{
+  "api_key": "mk_live_YOUR_KEY_HERE",
+  "api_base_url": "https://api.motifect.io/api/v1",
+  "prompt": "A person turns sharply, regains balance, and continues walking.",
+  "duration_seconds": 8,
+  "model_key": "motifect-v3",
+  "export_format": "fbx",
+  "import_destination": "/Game/Motifect/Animations"
+}

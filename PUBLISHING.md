@@ -1,93 +1,85 @@
-# Publishing to GitHub (Motifect-AI account)
+# Publishing — Motifect-AI / motifect-ai-addon
 
-This folder is a **standalone repo** for https://github.com/Motifect-AI/motifect-ai-addon  
-It is separate from your personal dev git credentials on the monorepo machine.
+**One public repo** for all DCC add-ons (Blender, Unreal, Unity):
 
-## 1. Sync latest add-on code
+https://github.com/Motifect-AI/motifect-ai-addon
 
-From this directory:
+| What | GitHub account | Repo |
+|------|----------------|------|
+| Web app (frontend / backend) | Your developer account | `Motifect/motifect-ai` |
+| **All DCC add-ons** | Motifect-AI official | `Motifect-AI/motifect-ai-addon` |
+
+The monorepo `addons/` folder is local dev only — never push it to `Motifect/motifect-ai`.
+
+---
+
+## Repo layout
+
+```
+motifect-ai-addon/
+  blender/motifect_ai_motion/   ← Blender add-on
+  unreal/MotifectMotion/        ← Unreal plugin
+  unity/MotifectMotion/         ← Unity UPM package
+  scripts/sync_all.py
+```
+
+---
+
+## Daily workflow
+
+### 1. Edit local sources (not in web repo git)
+
+```
+addons/blender/motifect_motion/
+addons/unreal/MotifectMotion/
+addons/unity/MotifectMotion/
+```
+
+### 2. Sync into this repo
 
 ```bash
-python scripts/sync_addon.py
+cd addons/blender/motifect-ai-addon
+python scripts/sync_all.py
 ```
 
-This copies `../motifect_motion/` → `motifect_ai_motion/` and builds `motifect_ai_motion.zip`.
+Builds `blender/motifect_ai_motion.zip` (gitignored — attach to GitHub Release).
 
-## 2. Authenticate as Motifect-AI (not your personal account)
-
-**`gh` is optional.** Plain `git` works (Options A or B below).
-
-### Option A — HTTPS + Personal Access Token (no extra tools)
-
-1. Browser: log into GitHub as the **Motifect-AI** account (org owner or bot user with push access).
-2. **Settings → Developer settings → Personal access tokens → Tokens (classic)** → **Generate new token**.
-3. Enable scope **`repo`**. Copy the token (shown once).
-4. Push (section 3). When Git asks:
-   - **Username:** Motifect-AI GitHub username  
-   - **Password:** paste the **token** (not your GitHub password)
-
-If Windows keeps using your personal account, open **Credential Manager → Windows Credentials** and remove `git:https://github.com` entries, then push again.
-
-### Option B — SSH (separate key, good for long-term)
-
-1. Generate a key used only for Motifect-AI:
+### 3. Commit & push (Motifect-AI account)
 
 ```bash
-ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_motifect_ai -C "motifect-ai-github"
+git add -A
+git commit -m "Motifect Motion: ..."
+git push origin main
 ```
 
-2. Add `~/.ssh/id_ed25519_motifect_ai.pub` to the Motifect-AI GitHub account → **SSH keys**.
-3. Push using SSH remote (see below) and `~/.ssh/config`:
-
-```
-Host github.com-motifect-ai
-  HostName github.com
-  User git
-  IdentityFile ~/.ssh/id_ed25519_motifect_ai
-```
-
-Remote URL: `git@github.com-motifect-ai:Motifect-AI/motifect-ai-addon.git`
-
-### Option C — GitHub CLI (optional)
-
-Install: https://cli.github.com/ then `gh auth login` with the Motifect-AI account.
-
-## 3. First push (new repo)
+SSH remote (this repo only):
 
 ```bash
-cd path/to/motifect-ai-addon
-python scripts/sync_addon.py
-git init
-git add .
-git commit -m "Motifect Motion Blender add-on v2.2.1"
-git branch -M main
-git remote add origin https://github.com/Motifect-AI/motifect-ai-addon.git
-git push -u origin main
+git remote set-url origin git@github.com-motifect-ai:Motifect-AI/motifect-ai-addon.git
 ```
 
-SSH remote instead:
+Use the `github.com-motifect-ai` SSH host alias so your personal GitHub credentials are untouched.  
+Generate a dedicated key and add it to the Motifect-AI GitHub account — see previous Blender-only notes or GitHub SSH docs.
+
+---
+
+## Releases
+
+**Blender:** attach `blender/motifect_ai_motion.zip` (run `sync_all.py` first).  
+Tag examples: `v2.2.1`, `blender-v2.2.1`.
+
+**Unreal / Unity:** users install from repo folders or Unity git URL — optional zip of `unreal/MotifectMotion` for Unreal-only release assets.
 
 ```bash
-git remote add origin git@github.com:Motifect-AI/motifect-ai-addon.git
+gh release create v2.3.0 blender/motifect_ai_motion.zip \
+  --title "Motifect Motion 2.3.0" \
+  --notes "Blender, Unreal, and Unity add-ons. Requires motifect.io API key and credits."
 ```
 
-## 4. Create a Release
+---
 
-**Without `gh`:** GitHub web → repo → **Releases → Draft a new release**
+## Unity install URL (for README / docs)
 
-- Tag: `blender-v2.2.1`
-- Title: `Motifect Motion 2.2.1`
-- Attach file: `motifect_ai_motion.zip`
-
-**With `gh` installed:**
-
-```bash
-gh release create blender-v2.2.1 motifect_ai_motion.zip \
-  --title "Motifect Motion 2.2.1" \
-  --notes "Text-to-motion for Blender. Requires motifect.io account, API key, and credits."
 ```
-
-## 5. Do not mix with monorepo remote
-
-The internal `motifect-ai` monorepo should **not** add this as its only remote.  
-Keep this folder as its own git root, or clone `motifect-ai-addon` to a separate directory on your PC.
+https://github.com/Motifect-AI/motifect-ai-addon.git?path=/unity/MotifectMotion
+```
